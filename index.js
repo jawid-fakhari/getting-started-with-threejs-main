@@ -29,7 +29,7 @@ camera.position.z = 5;
 const scene = new THREE.Scene();
 
 // create a sphera geometry
-const geometry = new THREE.IcosahedronGeometry(1, 2);
+const geometry = new THREE.IcosahedronGeometry(1.0, 2);
 // create a material with a azur color
 const mat = new THREE.MeshBasicMaterial({
     color: 0x4488ff
@@ -39,5 +39,18 @@ const mat = new THREE.MeshBasicMaterial({
 const mesh = new THREE.Mesh(geometry, mat);
 // add the mesh to the scene
 scene.add(mesh);
-// render the scene to the canvas from the perspective of the camera
-renderer.render(scene, camera);
+
+
+// animate the scene
+
+function animate() {
+    // api call the animate function again after the next frame of the animation
+    requestAnimationFrame(animate);
+
+    // rotate the mesh
+    mesh.rotation.x += 0.01;
+    mesh.rotation.y += 0.01;
+    // render the scene to the canvas from the perspective of the camera
+    renderer.render(scene, camera);
+}
+animate();
